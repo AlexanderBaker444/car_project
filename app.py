@@ -11,18 +11,16 @@ import pickle
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
-app.title='car value'
+app.title='knn'
 
 ########### Set up the layout
 
 app.layout = html.Div(children=[
     html.H1('Classification of Car Values'),
-    html.Img(src=app.get_asset_url('car.png'), style={'width': 'auto', 'height': 'auto'}),
     html.Div([
         html.Div([
             html.Div([
                 html.H6('Buying'),
-                
                 dcc.RadioItems(
                     id='slider-1',
                     options=[{'label':'low','value':0},{'label':'med','value':1},{'label':'high','value':2},{'label':'vhigh','value':3}],
@@ -114,7 +112,6 @@ app.layout = html.Div(children=[
         
     html.Br(),
     html.A('Code on Github', href='https://github.com/austinlasseter/knn_iris_plotly'),
-    
     ])
 ])
 
@@ -130,7 +127,6 @@ app.layout = html.Div(children=[
               Input('slider-6', 'value')])
 def display_results(k, value0, value1,value2,value3,value4,value5):
     # read in the correct model
-    
     file = open(f'model{k}.pkl', 'rb')
     model=pickle.load(file)
     file.close()
